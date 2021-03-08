@@ -1,5 +1,7 @@
 # Pomodoro Game
 
+[MD Pad](https://hackmd.io/b4w7p5jnQbilVrhoMNWm3w)
+
 # Game design
 
 Idle game - Pomodoro Crossover
