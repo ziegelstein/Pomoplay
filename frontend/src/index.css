@@ -25,9 +25,9 @@ code {
   display: grid;
   width: 100vw;
   height: 100vh;
-  grid-template-columns: 15% 6fr 15%;
-  grid-template-rows: 1fr 4fr 4fr 10%;
-  grid-column-gap: 5px;
+  grid-template-columns: 15% 1fr 15%;
+  grid-template-rows: 10% 1fr 1fr 10%;
+  grid-column-gap: 10px;
   grid-row-gap: 5px;
   grid-template-areas:
     "header header header"
@@ -50,10 +50,35 @@ header {
   border-color: var(--shadow);
   border-left: 1%;
   border-bottom: 1%;
+  display: inline-grid;
+  grid-template-areas:
+    "time time time"
+    "start stop reset";
   grid-area: pomo;
   overflow: auto;
   padding: 15px 5px 10px 5px;
   background-color: #9b000c;
+}
+
+.pomo > .time {
+  font-size: 20pt;
+  grid-area: "time";
+  width: 100hv;
+}
+
+.pomo > .start {
+  box-shadow: #fec1c6;
+  grid-area: "start";
+}
+
+.pomo > .stop {
+  box-shadow: #fec1c6;
+  grid-area: "stop";
+}
+
+.pomo > .reset {
+  box-shadow: #fec1c6;
+  grid-area: "reset";
 }
 
 .game {

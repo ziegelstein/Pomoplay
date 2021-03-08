@@ -7,14 +7,14 @@ function App() {
       <header>
         <h2>Pomoplay</h2>
       </header>
-      <div class="pomo"></div>
-      <div class="game">
-        <div class="timer">Minutes Left</div>
-        <div class="buttons">
-          <button>Action</button>
-          <button>Pause</button>
-          <button>Reset</button>
-        </div>
+      <div className="pomo">
+        <div className="time">Minutes Left</div>
+        <button className="start">Action</button>
+        <button className="stop">Pause</button>
+        <button className="reset">Reset</button>
+      </div>
+      <div className="game">
+        <p>ToDo</p>
       </div>
       <menu>
         <p>Menu</p>
