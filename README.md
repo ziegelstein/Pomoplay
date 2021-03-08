@@ -1,64 +1,132 @@
-# Buying List
+# Pomodoro Game
 
-A small tool to manage and organize articles to buy in lists. It uses an django backend with an REST API and a react frontend. It is meant to be an educational project.
+# Game design
 
-## Contents
+Idle game - Pomodoro Crossover
 
-- [About the project](#About)
-  - [Project Features](#Features)
-- [How to set it up](#Setup)
-- [How to use the app](#Use)
-- [Technologies used](#Technologies)
-  - [Frontend Technologies](#Frontend)
-  - [BackEnd Technologies](#Backend)
-  - [General Technologies](#General)
+Counting down clock
+Client is required to act when the countdown reaches zero
 
-## About
+## Classic Pomodoro Rules
 
-This project is meant to help you organize and plan your everyday and extended shopping. You can create new articles with related price, category, tags, priority and so on. You can generate lists out of articles and caclculate possible prices.
+- Has three phases
 
-### Features
+  - Pomodoro
+    - Usually 15 - 25 Minutes, time to do work
+  - Short Break
+    - Usually 5 Minutes, happens after every Pomodoro
+  - Long Break
+    - 10 - 15 Minutes, happens after 3 - 4 Pomodoro Cycles
 
-**Implemented**
+- The more pomodoros are done the better
+- A pomodoro can be stopped
 
-- None
+## Game state
 
-**Planned**
-- **Show articles** Shows either an specific Article by Id or all Articles, maybe also extended querying
-- **Create Article** Saves a new article, might already have some valdation
-- **Edit Article** Can alter properties of a certain article
-- **Buy article** archives an article and mark it as bought.
+Adjustable time scale
 
-**Backlog**
+while true
+while true
+pomodoro(timePomodoro)
+shortBreak(timeShort)
+longBreak(timeLong)
 
-- **Reoccurring articles** Articles that need to be bought repeatedly in a certain timeframe
-- **Dependcies Meaning** before Article A can be bought, first Article B should be bought
-- **Buying Lists** Set an article based on price, tags, categories or dependencies on a list to buy them
-- **Calculate Cost** Calculates the total cost of all articles, of articles of a categorie, of an article with all of its dependencies and of an list
+# Interface
 
+## Client side - react app
 
-## Setup
+Views:
 
-TODO: Add dockerization of the project and simple bashscripts to control them.
+Counting down clock
+Action buttom
+Pause buttom
+Configs: adjustabable time for
 
-## Use
+- pomodoro
+- short break
+- long break
 
-TODO
+POST?
 
-## Technologies
+## Server side
 
-### Frontend
+Create client
 
-The frontend uses the [react framework](https://reactjs.org/). Additional dependencies are:
+Client state
 
-### Backend
+- Paused
+- Phase
+  - Time
 
-The Backend uses the [django framework](https://www.djangoproject.com/). Additional dependencies are:
+Saved data
 
-- [Django Restframework](https://www.django-rest-framework.org/)
-- [TOX](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests/)
-- [Poetry](https://python-poetry.org/)
+- Interaction history
 
-### General
+Client score
 
-The project uses [Docker](https://www.docker.com/) for deploment.
+- ?
+
+### Example API
+
+- /user
+- /pomodoro
+  %- User validation -> User inputs auth, API returns token
+  - POST /pomodoro -> Create new Pomodoro (returns pomoId)
+  - GET /pomodoro/{pomoId}/pomodoro -> Returns the state of current pomodoro (paused state, state type, state time, state duration)
+  - POST /pomodoro/{pomoId}/state -> request state change of the pomodoro
+  - POST /pomodoro/{pomoId}/pause -> request pause
+  - PUT /pomodoro/{pomoId}/breaktime
+  - PUT /pomodoro/{pomoId}/pomodorotime
+  - PUT /pomodoro/{pomoId}/longbreaktime
+  - PUT /pomodoro/{pomoId}/cycleamount
+  - GET /pomodoro/{pomoId}/history -> dumps database history for pomoId
+
+#### Objects
+
+**pomodoro**
+
+- pomoId
+- paused flag
+- **_state_**
+  - statetype
+  - time
+  - duration
+- **pomodoro-attributes** - pomodorotime - longbreaktime - breaktime - cycleamount
+  **_history_** - timestamp
+  pomoId ?The pomodoro object already has a id?
+  stateFrom
+  finished flag
+
+Prob some database for persistent data.
+
+- sqlsite - maybe mariaDB or postgresyl
+  > [It has to set up a server I dont want to do that. Sqlite only needs a file]
+
+# Tasks
+
+## Sprint 1
+
+- Setup Repository
+  - Setup README
+  - Setup Permissions
+- Setup react project
+  - Setup npm react project
+  - Make design sketch
+  - Setup router
+  - Setup services for requests
+  - Setup CSS/HTML Structure
+- Setup python project (flask?)
+  - Setup poetry project
+    - Add dependencies
+    - Initialize project
+  - Setup db schema
+  - Setup endpoiints
+- Create poc
+
+## Backlog
+
+- Gamify the project
+  - Come up with gameplay mechanics
+- Dockerize the Project
+- Add User management
+- Setup CI/CD
